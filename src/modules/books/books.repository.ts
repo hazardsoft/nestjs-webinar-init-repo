@@ -13,6 +13,14 @@ export class BooksRepository {
     return this.booksRepository.save(book);
   }
 
+  async update(id: number, book: Book): Promise<Book> {
+    const result = await this.booksRepository.update(id, book);
+    if (result.affected === 0) {
+      throw new NotFoundException('Book not found');
+    }
+    return this.findOneOrNotFoundFail(id);
+  }
+
   async findAll(): Promise<Book[]> {
     return this.booksRepository.find();
   }

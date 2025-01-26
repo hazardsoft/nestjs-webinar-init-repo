@@ -10,6 +10,7 @@ import {
 import { BooksService } from './books.service';
 import { Book } from './books.entity';
 import { CreateBookDto } from './dto/create-book.dto';
+import { UpdateBookDto } from './dto/update-book.dto';
 
 @Controller('books')
 export class BooksController {
@@ -29,8 +30,10 @@ export class BooksController {
     return this.booksService.createBook(bookDto);
   }
 
-  @Put()
-  async updateBook(@Body() bookDto: any) {}
+  @Put(':id')
+  async updateBook(@Param('id') id: number, @Body() bookDto: UpdateBookDto) {
+    return this.booksService.updateBookById(id, bookDto);
+  }
 
   @Delete(':id')
   async deleteBook(@Param('id') id: number): Promise<void> {
