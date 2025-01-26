@@ -25,7 +25,7 @@ export class BooksRepository {
     return result;
   }
 
-  async remove(id: number): Promise<void> {
-    this.booksRepository.delete(id);
+  async delete(id: number): Promise<void> {
+    await this.booksRepository.delete(id);
   }
 }
