@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BooksRepository } from './books.repository';
 import { Book } from './books.entity';
+import { CreateBookDto } from './dto/create-book.dto';
 
 @Injectable()
 export class BooksService {
@@ -14,7 +15,7 @@ export class BooksService {
     return this.booksRepository.findOneOrNotFoundFail(id);
   }
 
-  async createBook(bookDto: any): Promise<Book> {
+  async createBook(bookDto: CreateBookDto): Promise<Book> {
     const book = new Book();
     book.title = bookDto.title;
     book.author = bookDto.author;
